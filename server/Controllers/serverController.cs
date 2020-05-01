@@ -7,9 +7,9 @@ using System.Web.Http;
 
 namespace server.Controllers
 {
-    public class MessagesController : ApiController
+    public class ServerController : ApiController
     {
-        // GET api/Messages
+        // GET api/Sever
         public IEnumerable<string> Get()
         {
             return new string[] { "Sample Get request" };
