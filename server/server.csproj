@@ -143,6 +143,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Messages\MessageEntry.cs" />
+    <Compile Include="Models\Messages\MessagesContext.cs" />
+    <Compile Include="Models\Messages\MessagesRepository.cs" />
     <Compile Include="Models\Users\UserEntry.cs" />
     <Compile Include="Models\Users\UsersContext.cs" />
     <Compile Include="Models\Users\UsersRepository.cs" />
