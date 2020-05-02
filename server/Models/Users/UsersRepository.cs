@@ -113,7 +113,7 @@ namespace server.Models.Users
         public void Dispose()
         {
             _log.Debug("UsersRepository Dispose");
-            throw new NotImplementedException();
+            db.Dispose();
         }
     }
 }
