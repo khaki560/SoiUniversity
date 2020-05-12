@@ -21,11 +21,12 @@ namespace client.Models
         /// <summary>
         /// Initializes a new instance of the UserEntry class.
         /// </summary>
-        public UserEntry(string name = default(string), string pass = default(string), string pubKey = default(string))
+        public UserEntry(string name = default(string), string pass = default(string), string pubKey = default(string), string privateKey = default(string))
         {
             Name = name;
             Pass = pass;
             PubKey = pubKey;
+            PrivateKey = privateKey;
         }
 
         /// <summary>
@@ -42,6 +43,11 @@ namespace client.Models
         /// </summary>
         [JsonProperty(PropertyName = "PubKey")]
         public string PubKey { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "PrivateKey")]
+        public string PrivateKey { get; set; }
 
     }
 }

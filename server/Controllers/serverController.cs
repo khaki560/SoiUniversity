@@ -34,13 +34,14 @@ namespace server.Controllers
     {
         // POST api/Sever/PostlogIn
         [HttpPost]
-        public IHttpActionResult PostlogIn([FromBody]Credentials cred)
+        public UserEntry PostlogIn([FromBody]Credentials cred)
         //public IHttpActionResult Postlog(string login, string password)
         {
             bool success = false;
+            UserEntry user;
             using (var r = new UsersRepository())
             {
-                var user = r.Get(cred.Login);
+                user = r.Get(cred.Login);
                 if (user != null)
                 {
                     success = cred.Password == user.Pass;
@@ -48,8 +49,8 @@ namespace server.Controllers
             }
 
             if (success == true)
-                return Ok();
-            return Unauthorized();
+                return user;
+            return null;
         }
 
         [HttpPost]

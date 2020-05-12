@@ -1,4 +1,7 @@
-﻿using System;
+﻿using client.Models;
+using client.Models.Messages;
+using Microsoft.Rest;
+using System;
 using System.Collections.Generic;
 using System.IO.Packaging;
 using System.Linq;
@@ -8,10 +11,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
+using MessageEntry = client.Models.Messages.MessageEntry;
 
 namespace client
 {
@@ -20,13 +26,78 @@ namespace client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string pKey;
-        public MainWindow(string privateKey)
+        public string SERVICE_URL = "http://localhost:9063/";
+        
+        private string privateKey;
+        private string publicKey;
+        private string userName;
+        private string password;
+
+        //private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        public static Server GetWebClient(string uri)
         {
-            InitializeComponent();
-            pKey = privateKey;
+            //_log.Info(uri);
+            var client = new Server(new Uri(uri), new BasicAuthenticationCredentials());
+            return client;
         }
 
+        public MainWindow(UserEntry user)
+        {
+            InitializeComponent();
+            privateKey= user.PrivateKey;
+            publicKey = user.PubKey;
+            userName = user.Name;
+            password = user.Pass;
+
+            SaveNewMessages();
+            RefreshListOfEntires();
+
+            ButtonUserSetings.Content = userName;
+        }
+
+        private void clear()
+        {
+            privateKey = "";
+            publicKey = "";
+            userName = "";
+        }
+
+        private void SaveNewMessages()
+        {
+            var webClient = GetWebClient(SERVICE_URL);
+
+            var result = webClient.ServerOperations.PostDownloadReceived(userName);
+            webClient.ServerOperations.ConfirmDownloadOfMessages(result.Select(message => message.Id).ToList());
+
+            using (var r = new MessagesRepository())
+            {
+                foreach(var m in result)
+                {
+                    r.Add(new MessageEntry()
+                    {
+                        Time = m.Time.GetValueOrDefault(),
+                        From = m.FromProperty,
+                        To = m.To,
+                        Message = m.Message,
+                    });
+                }
+            }
+        }
+
+        private void RefreshListOfEntires(string filter = "All")
+        {
+            using (var r = new MessagesRepository())
+            {
+                var messages = r.GetRecieved(userName, false);
+                messages = messages.OrderByDescending(x => x.Time);
+
+                ListOfEntires.Items.Clear();
+                foreach (var m in messages)
+                {
+                    ListOfEntires.Items.Add(m);
+                }
+            }
+        }
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
@@ -38,14 +109,30 @@ namespace client
 
         }
 
-        private void ButtonUserSetings_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
+            SaveNewMessages();
+            RefreshListOfEntires();
+        }
 
+        private void MenuPublicKey_click(object sender, RoutedEventArgs e)
+        {
+            var w = new PopUpWindow("Your public key is", publicKey);
+            w.ShowDialog();
+        }
+
+        private void MenuPrivateKey_click(object sender, RoutedEventArgs e)
+        {
+            var w = new PopUpWindow("Your private key is", privateKey);
+            w.ShowDialog();
+        }
+
+        private void MenuLogOut_click(object sender, RoutedEventArgs e)
+        {
+            var log = new LogWindow();
+            log.Show();
+            clear();
+            this.Close();
         }
     }
 }

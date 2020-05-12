@@ -25,7 +25,7 @@ namespace client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> PostlogInWithHttpMessagesAsync(Credentials cred, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<UserEntry>> PostlogInWithHttpMessagesAsync(Credentials cred, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='user'>
         /// </param>
         /// <param name='customHeaders'>

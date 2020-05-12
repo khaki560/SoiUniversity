@@ -8,5 +8,6 @@ namespace server.Models.Users
         public string Name { get; set; }
         public string Pass { get; set; }
         public string PubKey { get; set; }
+        public string PrivateKey { get; set; }
     }
 }

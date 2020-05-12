@@ -48,12 +48,17 @@ namespace client
         {
             var webClient = GetWebClient(SERVICE_URL);
 
+            string base64PubKey = "";
+            string base64PrivateKey = "";
             if (String.IsNullOrEmpty(privateKey) || String.IsNullOrEmpty(pubKey))
             {
                 using (var rsa = new RSACryptoServiceProvider(512))
                 {
                     pubKey = rsa.ToXmlString(false);
                     privateKey = rsa.ToXmlString(true);
+
+                    base64PubKey = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(pubKey));
+                    base64PrivateKey = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(privateKey));
                 }
             }
 
@@ -61,7 +66,8 @@ namespace client
             {
                 Name = TextBoxLogin.Text.ToString(),
                 Pass = TextBoxPassword.Text.ToString(),
-                PubKey = pubKey,
+                PubKey = base64PubKey,
+                PrivateKey = base64PrivateKey
             };
 
             try

@@ -43,9 +43,18 @@ namespace client
             try
             {
                 var result = webClient.ServerOperations.PostlogIn(new Credentials(TextBoxLogin.Text.ToString(), TextBoxPassword.Text.ToString()));
-                var a = new MainWindow("privateKey");
-                a.Show();
-                this.Close();
+
+                if(result == null)
+                {
+                    LabelInfo.Content = "Inccorect login or password";
+                }
+                else 
+                {
+                    var a = new MainWindow(result);
+                    a.Show();
+                    this.Close();
+                }
+
             }
             catch (Microsoft.Rest.HttpOperationException ex)
             {

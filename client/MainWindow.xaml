@@ -22,18 +22,36 @@
 			</Grid.ColumnDefinitions>
 
 			<Button Name="ButtonNew" Content="New"  Click="ButtonNew_Click" Grid.Column="0"/>
-			<Button Name="ButtonDelete" Content="Delete"  Click="ButtonDelete_Click" Grid.Column="1"/>
-			<Button Name="ButtonRefresh" Content="Refresh"  Click="ButtonRefresh_Click" Grid.Column="2"/>
-			<Button Name="ButtonUserSetings" Content="...."  Click="ButtonUserSetings_Click" Grid.Column="4"/>
+			<!--<Button Name="ButtonDelete" Content="Delete"  Click="ButtonDelete_Click" Grid.Column="1"/>-->
+			<Button Name="ButtonRefresh" Content="Refresh"  Click="ButtonRefresh_Click" Grid.Column="1"/>
+			<!--<Button Name="ButtonUserSetings" Content="...."  Click="ButtonUserSetings_Click" Grid.Column="4"/>-->
+			<Button Name="ButtonUserSetings" Content="...."  Grid.Column="4">
+				<Button.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="Public Key" Click="MenuPublicKey_click"/>
+						<MenuItem Header="Private Key" Click="MenuPrivateKey_click"/>
+						<Separator/>
+						<MenuItem Header="Log Out" Click="MenuLogOut_click"/>
+					</ContextMenu>
+				</Button.ContextMenu>
+			</Button>
+			<!--<MenuItem  Header="ASDADASDAS" Click="ButtonUserSetings_Click" x:Name="ButtonUserSetings"  Grid.Column="4"  >
+				<MenuItem>
+					<MenuItem Header="Public Key"/>
+					<MenuItem Header="Private Key"/>
+					<Separator/>
+					<MenuItem Header="Log Out"/>
+				</MenuItem>
+			</MenuItem>-->
 		</Grid>
 
 		<ListView Margin="10" Grid.Row="1" Name="ListOfEntires">
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Header="Time" Width="50" DisplayMemberBinding="{Binding Time}" />
-					<GridViewColumn Header="From" Width="50" DisplayMemberBinding="{Binding From}" />
+					<GridViewColumn Header="Time" Width="150" DisplayMemberBinding="{Binding Time}" />
+					<GridViewColumn Header="From" Width="100" DisplayMemberBinding="{Binding From}" />
 					<GridViewColumn Header="Title" Width="100" DisplayMemberBinding="{Binding Title}" />
-					<GridViewColumn Header="Message" Width="100" DisplayMemberBinding="{Binding Message}" />
+					<GridViewColumn Header="Message" Width="500" DisplayMemberBinding="{Binding Message}" />
 				</GridView>
 			</ListView.View>
 		</ListView>

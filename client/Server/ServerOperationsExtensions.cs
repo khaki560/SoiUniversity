@@ -22,7 +22,7 @@ namespace client
             /// </param>
             /// <param name='cred'>
             /// </param>
-            public static object PostlogIn(this IServerOperations operations, Credentials cred)
+            public static UserEntry PostlogIn(this IServerOperations operations, Credentials cred)
             {
                 return Task.Factory.StartNew(s => ((IServerOperations)s).PostlogInAsync(cred), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -35,7 +35,7 @@ namespace client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> PostlogInAsync(this IServerOperations operations, Credentials cred, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<UserEntry> PostlogInAsync(this IServerOperations operations, Credentials cred, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.PostlogInWithHttpMessagesAsync(cred, null, cancellationToken).ConfigureAwait(false))
                 {

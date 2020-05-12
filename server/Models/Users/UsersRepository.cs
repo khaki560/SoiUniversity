@@ -26,13 +26,14 @@ namespace server.Models.Users
                 {
                     Name = item.Name,
                     Pass = item.Pass,
-                    PubKey = item.PubKey
+                    PubKey = item.PubKey,
+                    PrivateKey = item.PrivateKey
                 });
 
                 _log.Debug("Get Returned:");
                 foreach(var user in users)
                 {
-                    _log.DebugFormat("Name {0}, Password {1}, PubKey:{2}", user.Name, user.Pass, user.PubKey);
+                    _log.DebugFormat("Name {0}, Password {1}, PubKey:{2} PrivateKey:{3}", user.Name, user.Pass, user.PubKey, user.PrivateKey);
                 }
             }
 
@@ -49,7 +50,8 @@ namespace server.Models.Users
                 {
                     Name = item.Name,
                     Pass = item.Pass,
-                    PubKey = item.PubKey
+                    PubKey = item.PubKey,
+                    PrivateKey = item.PrivateKey
                 });
 
             if (_log.IsDebugEnabled)
@@ -57,7 +59,7 @@ namespace server.Models.Users
                 _log.Debug("GetAll Returned:");
                 foreach (var user in users)
                 {
-                    _log.DebugFormat("Name {0}, Password {1}, PubKey:{2}", user.Name, user.Pass, user.PubKey);
+                    _log.DebugFormat("Name {0}, Password {1}, PubKey:{2} PrivateKey:{3}", user.Name, user.Pass, user.PubKey, user.PrivateKey);
                 }
             }
 
@@ -68,7 +70,7 @@ namespace server.Models.Users
         {
             db.Entries.Add(user);
             db.SaveChanges();
-            _log.DebugFormat("Added User Name {0}, Password {1}, PubKey:{2}", user.Name, user.Pass, user.PubKey);
+            _log.DebugFormat("Name {0}, Password {1}, PubKey:{2} PrivateKey:{3}", user.Name, user.Pass, user.PubKey, user.PrivateKey);
         }
 
         public void ModifyKey(string userName, string newPubKey)
@@ -96,11 +98,11 @@ namespace server.Models.Users
             {
                 db.Entries.Remove(user);
                 db.SaveChanges();
-                _log.DebugFormat("Removed User Name {0}, Password {1}, PubKey:{2}", user.Name, user.Pass, user.PubKey);
+                _log.DebugFormat("Name {0}, Password {1}, PubKey:{2} PrivateKey:{3}", user.Name, user.Pass, user.PubKey, user.PrivateKey);
             }
             else
             {
-                _log.DebugFormat("User to remove not found Name {0}, Password {1}, PubKey:{2}", user.Name, user.Pass, user.PubKey);
+                _log.DebugFormat("User to remove not found Name: {0}", userName);
             }
         }
 
