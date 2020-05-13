@@ -199,5 +199,31 @@ namespace client
                 }
             }
 
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='userName'>
+            /// </param>
+            public static string GetPubKey(this IServerOperations operations, string userName)
+            {
+                return Task.Factory.StartNew(s => ((IServerOperations)s).GetPubKeyAsync(userName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='userName'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<string> GetPubKeyAsync(this IServerOperations operations, string userName, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPubKeyWithHttpMessagesAsync(userName, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }

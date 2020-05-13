@@ -80,5 +80,14 @@ namespace client
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<object>> ConfirmDownloadOfMessagesWithHttpMessagesAsync(IList<int?> ids, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <param name='userName'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<string>> GetPubKeyWithHttpMessagesAsync(string userName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

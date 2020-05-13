@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Packaging;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -71,15 +72,26 @@ namespace client
 
             using (var r = new MessagesRepository())
             {
-                foreach(var m in result)
+                using (var rsa = new RSACryptoServiceProvider(512))
                 {
-                    r.Add(new MessageEntry()
+                    var base64EncodedBytes = System.Convert.FromBase64String(privateKey);
+                    var privateKeyDecoded = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+                    rsa.FromXmlString(privateKeyDecoded);
+
+                    var byteConverter = new UnicodeEncoding();
+
+                    foreach (var m in result)
                     {
-                        Time = m.Time.GetValueOrDefault(),
-                        From = m.FromProperty,
-                        To = m.To,
-                        Message = m.Message,
-                    });
+                        var messageStr = byteConverter.GetString(rsa.Decrypt(m.Message, false));
+
+                        r.Add(new MessageEntry()
+                        {
+                            Time = m.Time.GetValueOrDefault(),
+                            From = m.FromProperty,
+                            To = m.To,
+                            Message = messageStr,
+                        });
+                    }
                 }
             }
         }
@@ -101,7 +113,8 @@ namespace client
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
-
+            var w = new Send();
+            w.ShowDialog();
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)

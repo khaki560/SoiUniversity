@@ -28,7 +28,8 @@ namespace server.Controllers
         public DateTime Time { get; set; }
         public string From { get; set; }
         public string To { get; set; }
-        public string Message { get; set; }
+        public string Title { get; set; }
+        public byte[] Message { get; set; }
     }
     public class ServerController : ApiController
     {
@@ -141,6 +142,7 @@ namespace server.Controllers
                     Time = message.Time,
                     To = message.To,
                     From = message.From,
+                    title = message.Title,
                     Message = message.Message,
                     Downloaded = false
                 };
@@ -157,6 +159,21 @@ namespace server.Controllers
                 r.MarkAsDownlaoded(ids);
             }
             return Ok();
+        }
+
+        public string GetPubKey(string userName)
+        {
+            string pass = "";
+            using(var r = new UsersRepository())
+            {
+                var user = r.Get(userName);
+
+                if(user != null)
+                {
+                    pass = user.PubKey;
+                }
+            }
+            return pass;
         }
     }
 }

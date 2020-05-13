@@ -21,11 +21,12 @@ namespace client.Models
         /// <summary>
         /// Initializes a new instance of the SingleMessage class.
         /// </summary>
-        public SingleMessage(DateTime? time = default(DateTime?), string fromProperty = default(string), string to = default(string), string message = default(string))
+        public SingleMessage(DateTime? time = default(DateTime?), string fromProperty = default(string), string to = default(string), string title = default(string), byte[] message = default(byte[]))
         {
             Time = time;
             FromProperty = fromProperty;
             To = to;
+            Title = title;
             Message = message;
         }
 
@@ -46,8 +47,13 @@ namespace client.Models
 
         /// <summary>
         /// </summary>
+        [JsonProperty(PropertyName = "Title")]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// </summary>
         [JsonProperty(PropertyName = "Message")]
-        public string Message { get; set; }
+        public byte[] Message { get; set; }
 
     }
 }

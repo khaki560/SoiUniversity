@@ -93,6 +93,9 @@
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Send.xaml.cs">
+      <DependentUpon>Send.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Server\IServer.cs" />
     <Compile Include="Server\IServerOperations.cs" />
     <Compile Include="Server\Models\Credentials.cs" />
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Send.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
