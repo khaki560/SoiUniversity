@@ -21,7 +21,9 @@ namespace server.Models.Messages
                     Time = item.Time,
                     From = item.From,
                     To = item.To,
+                    title = item.title,
                     Message = item.Message,
+                    Key = item.Key,
                     Downloaded = item.Downloaded
                 }
             );

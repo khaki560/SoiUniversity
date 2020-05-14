@@ -28,19 +28,22 @@ namespace server.Controllers
         public DateTime Time { get; set; }
         public string From { get; set; }
         public string To { get; set; }
-        public string Message { get; set; }
+        public string Title { get; set; }
+        public byte[] Message { get; set; }
+        public byte[] Key { get; set; }
     }
     public class ServerController : ApiController
     {
         // POST api/Sever/PostlogIn
         [HttpPost]
-        public IHttpActionResult PostlogIn([FromBody]Credentials cred)
+        public UserEntry PostlogIn([FromBody]Credentials cred)
         //public IHttpActionResult Postlog(string login, string password)
         {
             bool success = false;
+            UserEntry user;
             using (var r = new UsersRepository())
             {
-                var user = r.Get(cred.Login);
+                user = r.Get(cred.Login);
                 if (user != null)
                 {
                     success = cred.Password == user.Pass;
@@ -48,8 +51,8 @@ namespace server.Controllers
             }
 
             if (success == true)
-                return Ok();
-            return Unauthorized();
+                return user;
+            return null;
         }
 
         [HttpPost]
@@ -140,7 +143,9 @@ namespace server.Controllers
                     Time = message.Time,
                     To = message.To,
                     From = message.From,
+                    title = message.Title,
                     Message = message.Message,
+                    Key = message.Key,
                     Downloaded = false
                 };
 
@@ -156,6 +161,21 @@ namespace server.Controllers
                 r.MarkAsDownlaoded(ids);
             }
             return Ok();
+        }
+
+        public string GetPubKey(string userName)
+        {
+            string pass = "";
+            using(var r = new UsersRepository())
+            {
+                var user = r.Get(userName);
+
+                if(user != null)
+                {
+                    pass = user.PubKey;
+                }
+            }
+            return pass;
         }
     }
 }

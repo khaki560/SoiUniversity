@@ -1,0 +1,39 @@
+﻿<Window x:Class="client.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:client"
+        mc:Ignorable="d"
+        Title="Register" Height="380" Width="210">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="32*"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+
+			<RowDefinition Height="30" />
+			<RowDefinition Height="10" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="10" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Label Name="LabelLogin" Content="Login:" HorizontalAlignment="Center" Grid.Row="1"  />
+		<Label Name="LabelPassword" Content="Password"  HorizontalAlignment="Center" Grid.Row="3"  />
+		<TextBox Name="TextBoxLogin" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" Grid.Row="2" Grid.ColumnSpan="2" />
+		<TextBox Name="TextBoxPassword" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" Grid.Row="4" Grid.ColumnSpan="2" />
+		<Label Name="LabelInfo" Content="" Foreground="Red" HorizontalAlignment="Center" Grid.Row="5"  />
+
+		<Button Name="ButtonSingUp" Content="Sing up" Grid.Row="7" Click="ButtonSingUp_Click" Grid.ColumnSpan="2"/>
+		<Button Name="ButtonClose" Content="Close" Grid.Row="9" Click="ButtonClose_Click" Grid.ColumnSpan="2"/>
+
+	</Grid>
+</Window>
