@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rsa", "rsa\rsa.csproj", "{D71115EA-EA6B-4AEC-9FE0-3D0AD8AF451A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{08716C31-0D58-4561-8D37-B4CE20E98D51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D71115EA-EA6B-4AEC-9FE0-3D0AD8AF451A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D71115EA-EA6B-4AEC-9FE0-3D0AD8AF451A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D71115EA-EA6B-4AEC-9FE0-3D0AD8AF451A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08716C31-0D58-4561-8D37-B4CE20E98D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08716C31-0D58-4561-8D37-B4CE20E98D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08716C31-0D58-4561-8D37-B4CE20E98D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08716C31-0D58-4561-8D37-B4CE20E98D51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

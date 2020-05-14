@@ -23,6 +23,7 @@ namespace server.Models.Messages
                     To = item.To,
                     title = item.title,
                     Message = item.Message,
+                    Key = item.Key,
                     Downloaded = item.Downloaded
                 }
             );

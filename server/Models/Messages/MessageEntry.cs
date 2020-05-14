@@ -13,6 +13,7 @@ namespace server.Models.Messages
         public string To { get; set; }
         public string title { get; set; }
         public byte[] Message { get; set; }
+        public byte[] Key { get; set; }
         public bool Downloaded { get; set; }
     }
 }

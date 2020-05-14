@@ -30,6 +30,7 @@ namespace server.Controllers
         public string To { get; set; }
         public string Title { get; set; }
         public byte[] Message { get; set; }
+        public byte[] Key { get; set; }
     }
     public class ServerController : ApiController
     {
@@ -144,6 +145,7 @@ namespace server.Controllers
                     From = message.From,
                     title = message.Title,
                     Message = message.Message,
+                    Key = message.Key,
                     Downloaded = false
                 };
 

@@ -21,7 +21,7 @@ namespace client.Models
         /// <summary>
         /// Initializes a new instance of the MessageEntry class.
         /// </summary>
-        public MessageEntry(int? id = default(int?), DateTime? time = default(DateTime?), string fromProperty = default(string), string to = default(string), string title = default(string), byte[] message = default(byte[]), bool? downloaded = default(bool?))
+        public MessageEntry(int? id = default(int?), DateTime? time = default(DateTime?), string fromProperty = default(string), string to = default(string), string title = default(string), byte[] message = default(byte[]), byte[] key = default(byte[]), bool? downloaded = default(bool?))
         {
             Id = id;
             Time = time;
@@ -29,6 +29,7 @@ namespace client.Models
             To = to;
             Title = title;
             Message = message;
+            Key = key;
             Downloaded = downloaded;
         }
 
@@ -61,6 +62,11 @@ namespace client.Models
         /// </summary>
         [JsonProperty(PropertyName = "Message")]
         public byte[] Message { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "Key")]
+        public byte[] Key { get; set; }
 
         /// <summary>
         /// </summary>
