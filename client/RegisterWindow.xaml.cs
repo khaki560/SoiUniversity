@@ -22,17 +22,10 @@ namespace client
     /// </summary>
     public partial class Register : Window
     {
-        public string SERVICE_URL = "http://localhost:9063/";
         private string pubKey;
         private string privateKey;
 
         //private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public static Server GetWebClient(string uri)
-        {
-            //_log.Info(uri);
-            var client = new Server(new Uri(uri), new BasicAuthenticationCredentials());
-            return client;
-        }
 
         public void clear()
         {
@@ -46,7 +39,7 @@ namespace client
 
         private void ButtonSingUp_Click(object sender, RoutedEventArgs e)
         {
-            var webClient = GetWebClient(SERVICE_URL);
+            var webClient = RestComunator.GetWebClient();
 
             string base64PubKey = "";
             string base64PrivateKey = "";

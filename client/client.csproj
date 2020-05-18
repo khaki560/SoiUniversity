@@ -93,6 +93,7 @@
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RestComunator.cs" />
     <Compile Include="Send.xaml.cs">
       <DependentUpon>Send.xaml</DependentUpon>
     </Compile>

@@ -27,21 +27,13 @@ namespace client
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public string SERVICE_URL = "http://localhost:9063/";
-        
+    {   
         private string privateKey;
         private string publicKey;
         private string userName;
         private string password;
 
         //private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public static Server GetWebClient(string uri)
-        {
-            //_log.Info(uri);
-            var client = new Server(new Uri(uri), new BasicAuthenticationCredentials());
-            return client;
-        }
 
         public MainWindow(UserEntry user)
         {
@@ -66,7 +58,7 @@ namespace client
 
         private void SaveNewMessages()
         {
-            var webClient = GetWebClient(SERVICE_URL);
+            var webClient = RestComunator.GetWebClient();
 
             var result = webClient.ServerOperations.PostDownloadReceived(userName);
             webClient.ServerOperations.ConfirmDownloadOfMessages(result.Select(message => message.Id).ToList());

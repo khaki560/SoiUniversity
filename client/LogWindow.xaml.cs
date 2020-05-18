@@ -21,25 +21,15 @@ namespace client
     /// </summary>
     public partial class LogWindow : Window
     {
-        public string SERVICE_URL = "http://localhost:9063/";
-
         //private static readonly log4net.ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public static Server GetWebClient(string uri)
-        {
-            //_log.Info(uri);
-            var client = new Server(new Uri(uri), new BasicAuthenticationCredentials());
-            return client;
-        }
-
         public LogWindow()
         {
             InitializeComponent();
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
-        {
-            LabelInfo.Content = "";
-            var webClient = GetWebClient(SERVICE_URL);
+        {            LabelInfo.Content = "";
+            var webClient = RestComunator.GetWebClient();
             try
             {
                 var result = webClient.ServerOperations.PostlogIn(new Credentials(TextBoxLogin.Text.ToString(), TextBoxPassword.Text.ToString()));
