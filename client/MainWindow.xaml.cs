@@ -86,6 +86,7 @@ namespace client
                             From = m.FromProperty,
                             To = m.To,
                             Message = messageStr,
+                            Title = m.Title,
                         });
                     }
                 }
@@ -109,7 +110,7 @@ namespace client
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
-            var w = new Send();
+            var w = new Send(userName);
             w.ShowDialog();
         }
 

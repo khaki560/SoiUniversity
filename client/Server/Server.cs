@@ -231,7 +231,7 @@ namespace client
         private void Initialize()
         {
             this.ServerOperations = new ServerOperations(this);
-            this.BaseUri = new Uri("http://localhost:9063");
+            this.BaseUri = new Uri("https://localhost:44306");
             SerializationSettings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,

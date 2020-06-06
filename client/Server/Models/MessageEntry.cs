@@ -55,7 +55,7 @@ namespace client.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "title")]
+        [JsonProperty(PropertyName = "Title")]
         public string Title { get; set; }
 
         /// <summary>

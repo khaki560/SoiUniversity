@@ -20,6 +20,7 @@ namespace client.Models.Messages
                     Id = item.Id,
                     Time = item.Time,
                     From = item.From,
+                    Title = item.Title,
                     To = item.To,
                     Message = item.Message,
                 }

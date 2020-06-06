@@ -143,7 +143,7 @@ namespace server.Controllers
                     Time = message.Time,
                     To = message.To,
                     From = message.From,
-                    title = message.Title,
+                    Title = message.Title,
                     Message = message.Message,
                     Key = message.Key,
                     Downloaded = false
